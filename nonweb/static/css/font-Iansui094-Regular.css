@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Iansui094-Regular';
+  src:  url('../fonts/Iansui094-Regular.woff') format("woff"),
+        url('../fonts/Iansui094-Regular.ttf') format("truetype"),
+        url('../fonts/Iansui094-Regular.eot') format("embedded-opentype");
+}
+
+
+

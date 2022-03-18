@@ -1,0 +1,74 @@
+{% extends "Base.html" %}
+
+{% block title %}
+	S&P 生鮮超市
+{% endblock %}
+
+
+{% block css %}
+
+<link rel="stylesheet" href="/static/css/product.css" />
+{% endblock %}
+
+
+
+
+{% block Content %}
+
+    <div class="page-title sp" style="background-image: url(/static/images/news-bg.jpg)">
+        <div class="container text-center">
+            <h3><strong><font color="#303030" size="6" style="background: #F1DEFF">S&P 生鮮超市</font></strong></h3>
+            <h7 style="background: #ffffff;"><font color="#000000" size="4">S&P Mall</font></h7>
+        </div>
+    </div>
+
+    <div style="padding: 20px;">
+
+		<section class="hotel_booking_area">
+			<div class="container">
+				<div class="row hotel_booking_table">
+					<form action='' method='get'>
+						產品名稱：<input type="text" name="qp" />
+						<input type="submit" value="查詢" />
+					</form>
+				 </div>                    
+			</div>
+		</section>
+		<hr>
+		<div class='info'>
+	        <section class="accomodation_area section_gap">
+	            <div class="container">
+	                <div class="row mb_30">
+						{% for p in product %}    
+							<div class="col-lg-3 col-sm-6">
+								<div class="accomodation_item text-center">
+									<div class="hotel_img">
+										<img src="{{p.photo_url}}" alt="">
+										<a href="/addtocart/add/{{p.id}}/" class="btn theme_btn button_hover">Buy Now</a>
+									</div>
+									<a href="#"><h7 class="sec_h4">{{p.name}}</h7></a>
+									<h7>${{p.price}}</h7>
+								</div>
+							</div>
+						{% endfor%}  
+	                </div>
+	            </div>
+	        </section>
+		</div>
+
+		<div style="clear: both;height: 10px;text-align: center;">
+		
+			{% if product.has_previous %}
+				<a href="?page={{product.previous_page_number}}&qp={{pname}}">上一頁</a>
+			{% endif %}
+
+			{% if product.has_next %}
+				<a href="?page={{product.next_page_number}}&qp={{pname}}">下一頁</a>
+			{% endif %}
+
+		</div>
+	</div>
+
+
+
+{% endblock %}

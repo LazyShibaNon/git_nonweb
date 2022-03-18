@@ -1,0 +1,110 @@
+{% extends "Base.html" %}
+
+{% block title %}
+訂單查詢
+{% endblock %}
+
+{% block Content %}
+	<div class="page-title sp" style="background-image: url(/static/images/news-bg.jpg)">
+        <div class="container text-center">
+            <h3><strong><font color="#303030" size="6" style="background: #F1DEFF">訂單查詢</font></strong></h3>
+            <h7 style="background: #ffffff;"><font color="#000000" size="4">Thanks For Your Buying</font></h7>
+        </div>
+    </div>
+	
+<div style="padding: 20px;">
+	<div id="maindiv">
+		{% if firstsearch == 1 %}	
+		
+			<form action="/cartordercheck/" method="get">
+				<p class="title">訂單查詢</p>
+				<table border="0" align="center" cellpadding="10" cellspacing="0">
+					<tr>
+						<td>訂單編號</td>
+						<td><input name="orderid" type="text" size="10" required /></td>
+						<td>客戶電子郵件</td>
+						<td><input type="text" name="customemail" required /></td>
+						<td><input type="submit" value="送出" /><td>
+					</tr>
+				</table>
+			</form>
+			
+		{% else %}
+			{% if notfound == 1 %}
+			
+				<div class="message">對不起，系統中沒有你查詢的資料</div>
+				<form action="/cartordercheck/" method="get">
+					<p class="title">訂單查詢</p>
+					<table border="0" align="center" cellpadding="10" cellspacing="0">
+						<tr>
+							<td>訂單編號</td>
+							<td><input name="orderid" type="text" size="10" required /></td>
+							<td>客戶電子郵件</td>
+							<td><input type="text" name="customemail" required /></td>
+							<td><input type="submit" value="送出" /><td>
+						</tr>
+					</table>
+				</form>
+				
+			{% else %}
+			
+				<p class="title">訂單資料</p>
+				<p class="subject">訂單編號:<font color="#ff0000">{{orderid}}</font></p>
+				<table width="90%" border="0" align="center" cellpadding="4" cellspacing="1">
+					<tr>
+						<td align="center" bgcolor="#cccccc">商品名稱</td>
+						<td width="80" align="center" bgcolor="#cccccc">單價</td>
+						<td width="80" align="center" bgcolor="#cccccc">數量</td>
+						<td width="150" align="center" bgcolor="#cccccc">金額</td>
+					</tr>
+						{% for detail in details %}
+							<tr>
+								<td align="center" bgcolor="#ffffff">{{detail.pname}}</td>
+								<td width="80" align="center" bgcolor="#ffffff">{{detail.unitprice}}</td>
+								<td width="80" align="center" bgcolor="#ffffff">{{detail.quantity}}</td>
+								<td width="150" align="center" bgcolor="#ffffff"><strong>{{detail.dtotal}}</strong></td>
+							</tr>						
+						{% endfor %}
+					<tr>
+						<td colspan="3" align="left" bgcolor="#ffffff"><strong>小計</strong></td>
+						<td width="150" align="center" bgcolor="#ffffff"><strong>$ {{order.subtotal}}</strong></td>					
+					</tr>					
+					<tr>
+						<td colspan="3" align="left" bgcolor="#ffffff"><strong>運費</strong></td>
+						<td width="150" align="center" bgcolor="#ffffff"><strong>$ 60</strong></td>					
+					</tr>					
+					<tr>
+						<td colspan="3" align="left" bgcolor="#ffffff"><strong>總計</strong></td>
+						<td width="150" align="center" bgcolor="#ffffff"><strong>$ {{order.grandtotal}}</strong></td>					
+					</tr>				
+				</table>
+				
+				<p class="subject">客戶資料</p>
+				<table width="90%" border="0" align="center" cellpadding="4" cellspacing="1">
+					<tr>
+						<td width="100" align="center" bgcolor="#cccccc"><strong>姓名</strong></td>
+						<td bgcolor="#ffffff">{{order.customname}}</td>
+					</tr>					
+					<tr>
+						<td width="100" align="center" bgcolor="#cccccc"><strong>連絡電話</strong></td>
+						<td bgcolor="#ffffff">{{order.customphone}}</td>
+					</tr>					
+					<tr>
+						<td width="100" align="center" bgcolor="#cccccc"><strong>地址</strong></td>
+						<td bgcolor="#ffffff">{{order.customaddress}}</td>
+					</tr>					
+					<tr>
+						<td width="100" align="center" bgcolor="#cccccc"><strong>Email</strong></td>
+						<td bgcolor="#ffffff">{{order.customemail}}</td>
+					</tr>
+					<tr>
+						<td width="100" align="center" bgcolor="#cccccc"><strong>付款方式</strong></td>
+						<td bgcolor="#ffffff">{{order.paytype}}</td>
+					</tr>					
+				</table>			
+				
+			{% endif %}
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

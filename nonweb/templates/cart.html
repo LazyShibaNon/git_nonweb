@@ -1,0 +1,81 @@
+{% extends "Base.html" %}
+
+{% block title %}
+購物車內容
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/cart.css">
+{% endblock %}
+
+
+{% block Content %}
+
+	<script type="text/javascript">
+		function confirmLink(message){
+			if (message == "")
+				message = "確定";
+			document.returnValue = confirm(message);
+		}
+	</script>
+
+	<div class="page-title sp" style="background-image: url(/static/images/news-bg.jpg)">
+        <div class="container text-center">
+            <h3><strong><font color="#303030" size="6" style="background: #F1DEFF">購物車內容</font></strong></h3>
+            <h7 style="background: #ffffff;"><font color="#000000" size="4">Cart Contents</font></h7>
+        </div>
+    </div>
+	
+	<div style="padding: 20px;">
+	
+		<div id="maindiv">
+			<form action="/addtocart/update/" method="post" name="form1" id="form1">
+				{% csrf_token %}
+				
+				<table width="90%" border="0" align="center" cellpadding="4" cellspacing="0">
+					<tr>
+						<th width="60" align="center"><strong>取消</strong></th>
+						<th align="left"><strong>商品名稱</strong></th>
+						<th width="80" align="center"><strong>單價</strong></th>
+						<th width="80" align="center"><strong>數量</strong></th>
+						<th width="100" align="center"><strong>金額</strong></th>
+					</tr>
+					{% for unit in allcart %}
+						<tr>
+							<td bgcolor="#ffffff"><a href="/addtocart/remove/{{forloop.counter0}}" class="delcart" onClick="confirmLink('確定刪除這個商品嗎?');return documnet.returnValue">刪除</a></td>
+							<td align="left" bgcolor="#ffffff">{{unit.0}}</td>
+							<td width="80" align="center" bgcolor="#ffffff">$ {{unit.1}}</td>
+							<td width="80" align="center" bgcolor="#ffffff"><input type="text" name="qty{{forloop.counter0}}" id="qty{{forloop.counter0}}" value="{{unit.2}}" size ="2" /></td>
+							<td width="100" align="center" bgcolor="#ffffff"><strong>$ {{unit.3}}</strong></td>
+							
+						</tr>
+						
+					{% endfor %}
+					
+					<tr>
+						<td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>小計</strong></td>
+						<td align="center" bgcolor="#ffffff" class="upline">$ {{total}}</td>
+					</tr>
+					<tr>
+						<td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>運費:60元</strong></td>
+						<td align="center" bgcolor="#ffffff" class="upline">$ 60</td>
+					</tr>
+					<tr>
+						<td colspan="4" align="left" bgcolor="#ffffff" ><strong>總計</strong></td>
+						<td align="center" bgcolor="#ffffff" ><strong><font color="#ff0000">$ {{grandtotal}}</font></strong></td>
+					</tr>			
+				</table>
+				
+				<table border="0" align="center" cellpadding="10" cellspacing="0">
+					<tr>
+						<td><input type="button" name="Continue" value="繼續購物" onClick="window.location='/product/'" /></td>
+						<td><input type="submit" name="Submit" value="更新購物車" /></td>
+						<td><input type="button" name="Empty" onClick="window.location='/addtocart/empty/'" value="清空購物車" /></td>
+						<td><input type="button" name="Order" onClick="window.location='/cartorder/'" value="我要結帳" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "Base.html" %}
+
+{% block title %}
+團隊紀錄
+{% endblock %}
+{% block css %}
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet"></link>
+{% endblock %}
+
+{% block Content %}
+    <div class="page-title sp" style="background-image: url(/static/images/news-bg.jpg)">
+        <div class="container text-center">
+            <h3><strong><font color="#303030" size="6" style="background: #F1DEFF">關於我們</font></strong></h3>
+            <h7 style="background: #ffffff;"><font color="#000000" size="4">About Us</font></h7>
+        </div>
+    </div>
+
+    <div style="padding: 20px;">
+
+	    <section class="text-center">
+	      <div class="container">
+	        <h1>圖片牆</h1>
+	      </div>
+	    </section>
+
+		<form action="" method="POST" enctype="multipart/form-data">
+	        {% csrf_token %}
+
+	        <div class="form-row">
+	            <div class="form-group col-md-4">
+	            </div>
+	            <div class="form-group col-md-4">
+	                <input type="submit" class="btn btn-primary" value="上傳">
+	            </div>
+	            <div class="form-group col-md-4">
+	            </div>
+	        </div>
+	        <div class="form-row">
+	            <div class="form-group col-md-4">
+	            </div>
+	            <div class="form-group col-md-4">
+	                {{ form.image }}
+	            </div>
+	            <div class="form-group col-md-4">
+	            </div>	            
+	        </div>
+	    </form>
+
+
+    <div class="row">
+    {% for photo in photos %}
+
+    <br />
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <img class="card-img-top" src="{{photo.image.url}}" >
+        </div>
+    </div>
+    {% endfor %}
+</div>
+    
+ 
+
+
+
+
+
+
+	     
+		
+{% endblock %}

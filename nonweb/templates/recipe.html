@@ -1,0 +1,51 @@
+{% extends "Base.html" %}
+
+{% block title %}
+	食譜搜尋
+{% endblock %}
+
+{% block css %}
+	<link rel="stylesheet" href="/static/css/recipe.css">
+{% endblock %}
+
+
+{% block Content %}
+    <div class="page-title sp" style="background-image: url(/static/images/news-bg.jpg)">
+        <div class="container text-center">
+            <h3><strong><font color="#303030" size="6" style="background: #F1DEFF">食譜搜尋</font></strong></h3>
+            <h7 style="background: #ffffff;"><font color="#000000" size="4">Recipe Search</font></h7>
+        </div>
+    </div>
+
+	<div style="padding: 20px">	
+		<form action="" method="Post"name="form1" id="form1">
+			{% csrf_token %}
+			<input name="search" placeholder="請輸入欲查詢的食譜" />
+			<input type="submit" value="查詢" /><font size="2" >&nbsp&nbsp來源: iCook</font>
+			
+			<div style="min-height: 15px"></div>
+
+			<table class="table" width="90%" border="0" align="center" cellpadding="4" cellspacing="0">
+				<thead>
+					<tr>
+						<th align="left"><strong>標&nbsp&nbsp&nbsp&nbsp題</strong></th>
+						<th align="center"><strong>作&nbsp&nbsp&nbsp&nbsp者</strong></th>
+						<th align="center"><strong>食&nbsp&nbsp&nbsp&nbsp材</strong></th>					
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for item in items %}
+						<tr>
+							<td bgcolor="#ffffff">
+								<a href="{{item.uRl}}" target="_blank" align="left">{{item.titlE}}</a>
+							</td>
+							<td align="center" bgcolor="#ffffff">{{item.autheR}}</td>
+							<td align="left" bgcolor="#ffffff">{{item.neeD}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>			
+		</form>
+	</div>	
+{% endblock %}

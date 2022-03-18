@@ -1,0 +1,72 @@
+{% extends "Base.html" %}
+
+{% block title %}
+關於
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/reviews.css">
+{% endblock %}
+
+{% block Content %}
+
+    <div class="page-title sp" style="background-image: url(/static/images/news-bg.jpg)">
+        <div class="container text-center">
+            <h3><strong><font color="#303030" size="6" style="background: #F1DEFF">關於我們</font></strong></h3>
+            <h7 style="background: #ffffff;"><font color="#000000" size="4">About Us</font></h7>
+        </div>
+    </div>
+
+    <div style="padding: 20px;">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="about-content">
+                        <h3>Chef Ah-Wei (黃佳瑋)</h3>
+                        <p>鹽與胡椒招牌中間有個無限符號，意指在西式料理的變化中沒有一定的定位，不變的是強調風土、家庭和傳承的精神，「我們用鹽與胡椒作為店名，就是希望我們做料理的方式，能接近原食材去烹調，也盡量使用台灣食材，以百分之60、70的原食材，透過不同手法去呈現不同的料理。」</p>
+                        <p>透過食材組合、現代料理烹調的手法創造出全新的風格，除了美味，還將料理注入屬於S&P好玩有趣的靈魂，讓餐點不只是餐點，更是邀請大家對生活時常保持熱情趣味的態度。</p>
+                        <a href="/team" class="button">團隊紀錄</a>
+                        <a href="/menu" class="button">餐點介紹</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="about-img">
+                        <img src="/static/images/chef.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>            
+        <hr>
+        <div class="container">
+            <div class="section-title" style="margin-bottom: 1px;">
+                <h6>Customer Reviews</h6>
+                <font>來自Google的顧客回饋</font>
+            </div>
+            <div class="row" style="margin-top: 1px;">
+                {% for a in reviews %}
+                    <div class="col-lg-4 col-md-6 single-service" style="padding: 10px;border: 10px;margin-top: 1px;margin-bottom: 1px;">
+                        <div class="inner" style="padding: 10px">
+                            <h7>{{a.auther}}</h7><br>
+                            <font size="1">Google 評價: {{a.grade}} 顆星</font>                            
+                            <p class="ellipsis"><font size="1">{{a.comment}}</font></p> 
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div style="clear: both;height: 10px;text-align: center;">
+
+            {% if reviews.has_previous %}
+                <a href="?page={{reviews.previous_page_number}}"><font size="1">上一頁</font></a>
+            {% endif %}
+
+            {% if reviews.has_next %}
+                <a href="?page={{reviews.next_page_number}}"><font size="1" >下一頁</font></a>
+            {% endif %}
+        </div>
+        <hr>   
+
+
+{% endblock %}
