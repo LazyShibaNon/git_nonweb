@@ -19,8 +19,8 @@
 <img src="https://user-images.githubusercontent.com/97113101/159983830-98a615d2-3e6b-464d-8e7d-7391740ea459.png" width="400" height="200" /><br/>
 
 <img src="https://user-images.githubusercontent.com/97113101/159983848-95f95b71-a362-4043-90b6-d9bd2567b14d.png" width="400" height="200" /><br/>
-
----"聯絡我們"使用Google Map API 嵌入餐廳位址的地圖，並將顧客的回饋傳入資料庫<br>![Image 6]()
+<hr>
+---"聯絡我們"使用Google Map API 嵌入餐廳位址的地圖，並將顧客的回饋傳入資料庫<br>
 <img src="https://user-images.githubusercontent.com/97113101/159983864-c21aad08-88af-403d-9b76-f6e10d03a291.png" width="400" height="200" /><br/>
 
 # 此網站架設於 AWS 平台上
