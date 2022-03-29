@@ -27,5 +27,4 @@
 <img src="https://user-images.githubusercontent.com/97113101/159983864-c21aad08-88af-403d-9b76-f6e10d03a291.png" width="400" height="200" /><br/>
 
 # 此網站架設於 AWS 平台上
-http://13.231.110.56:8000/index.html/
 
